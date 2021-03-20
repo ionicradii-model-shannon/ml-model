@@ -1,0 +1,214 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+
+*{margin: 0; padding:0; box-sizing: border-box;}
+html{ height: 100%; line-height: 1.5; font-size: 55%; font-weight: bold; /* =10px */ font-family:  Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;}
+
+body{
+	background: #F0FFFF;
+	-moz-background: #F0FFFF;
+	-webkit-background: #F0FFFF;
+	-o-background: #F0FFFF;
+	/*background: #7d7e7d; /* Old browsers */
+	/*background: -moz-radial-gradient(center, ellipse cover,  #EAEAEA 0%, #222 100%); /* FF3.6+ */
+	/*background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#EAEAEA), color-stop(100%,#222)); /* Chrome,Safari4+ */
+	/*background: -webkit-radial-gradient(center, ellipse cover,  #EAEAEA 0%,#222 100%); /* Chrome10+,Safari5.1+ */
+	/*background: -o-radial-gradient(center, ellipse cover,  #EAEAEA 0%,#222 100%); /* Opera 12+ */
+	/*background: -ms-radial-gradient(center, ellipse cover,  #EAEAEA 0%,#222 100%); /* IE10+ */
+	/*background: radial-gradient(ellipse at center,  #EAEAEA 0%,#222 100%); /* W3C */
+	/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EAEAEA', endColorstr='#222',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	font-size: 16px;
+	font-size: 2.0rem;
+}
+#f-block,
+#periodic-table{
+  display: block;
+  width: 100%;
+}
+#f-block:after ,
+#periodic-table:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#descriptions {
+	width: 70%;
+	max-width:1000px;
+	margin: 0 auto;
+}
+#descriptions .info{
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+	transition: opacity 1s ease-out;
+	-moz-transition: opacity 1s ease-out;
+	-webkit-transition: opacity 1s ease-out;
+	-o-transition: opacity 1s ease-out;
+}
+#descriptions .info:target{
+    opacity: 1;
+    height: auto;
+	padding: 2rem 5rem;
+	background: #F8F8FF;	/* original rgba(255,255,255, .1); */
+	border-radius: 0%;
+	border: solid 5px #2F4F4F; /* original rgba(255,255,255, .2); */
+}
+table {			/* added by faisal */
+  border-collapse: collapse;
+}
+table, th, td {			/* added by faisal */
+	padding: 5px;
+  border: 1px solid black;
+	font-size: 1.6rem;
+}
+
+#container{
+	width: 90%;
+	max-width: 1200px;
+	margin: 0 auto;
+	margin-top: 5em;
+}
+#container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.row{
+	width: 100%;
+	display: block;
+}
+.row span{
+	float: left;
+}
+#f-block span{
+	float: left;
+}
+.element{
+	padding: 2px;
+	width: 50%;
+	height: 5%;
+}
+.row span{
+	display: block;
+}
+@media only screen and (min-width : 768px) {
+	.element{
+		width: 5.55%;
+		height: 5.5rem;
+	}
+	#f-block{
+		margin-top: 30px;
+	}
+	.span-15{   /* original */
+		width: 83.325%;
+		height: 1px;
+	}
+	.span-9{   /* original */
+		width: 49.999%;
+		height: 1px;
+	}
+	.span-16{   /* added by faisal */
+		width: 88.887%;
+		height: 1px;
+	}
+	.span-10{   /* added by faisal */
+		width: 55.554%;
+		height: 1px;
+	}
+	.span-3{   /* added by faisal */
+		width: 16.666%;
+		height: 1px;
+	}
+	.span-2{   /* added by faisal */
+		width: 11.110888%;
+		height: 1px;
+	}
+	.span-1{   /* added by faisal */
+		width: 5.555444%;
+		height: 1px;
+	}
+}
+.element a{
+	border-radius: .4rem;
+	text-align: center;
+	color: #333;
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 1.5rem 0;
+	text-decoration: none;
+}
+.key{
+	line-height: 3rem;
+	margin: 2rem auto;
+	width: 60%;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
+}
+.key li {
+	display: inline-block;
+	margin: 0 .2rem;
+}
+.swatch{
+	width: 2rem;
+	height: 2rem;
+	border: solid 1px #777;
+	display: inline-block;
+}
+
+.swatch.root,			/* hydrogen element */
+.element.root a{
+	background: #FFCC99;		/* original color: #9BFF9B */
+}
+.swatch.text,
+.element.text a{
+	background:#B8FFED;
+}
+.swatch.form,
+.element.form a{
+	background:#B8FFED;			/* original color: #EDFFEB */
+}
+.swatch.table,
+.element.table a{
+	background:#B8FFED;			/* original color: #FFE4C1 */
+}
+.swatch.meta,
+.element.meta a{
+	background:#FFCC99;
+}
+.swatch.group,
+.element.group a{
+	background:#FF9376;			/* original color: #FF9376 */
+}
+.swatch.doc,
+.element.doc a{
+	background:#B8FFED;			/* original color: #FFF79F */
+}
+.swatch.interactive,
+.element.interactive a{
+	background:#B8FFED;			/* original color: #FFCAD4 */
+}
+.swatch.embed,
+.element.embed a{
+	background:#FFCA22;
+}
+.links{
+	margin-left: 2rem;
+}
+h1{
+	text-align: center;
+	font-size: 4rem;
+	color: #000000;
+}
+.by{
+	text-align: center;
+	font-size: 1.8rem;
+	color: #FFF;
+}
+.by a{
+	color: #CCC;
+}

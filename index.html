@@ -1,0 +1,2948 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css">
+    <title>Material Database using Machine Learning</title>
+  </head>
+  <body>
+    <div id="container">
+      <h1>Extending Shannon’s Ionic Radii Database Using Machine Learning</h1>
+      <h2>Project: Extending ionic radii database for missing oxidation states and coordination geometries using machine learning regression.</h2>
+      <div id="periodic-table">
+        <div class="row">
+          <span class="element root"><a href="#H">H</a></span>
+          <!-- Yes, I know, this sucks -->
+          <span class="span-16"></span>
+          <span class="element table"><a href="#He">He</a></span>
+        </div>
+        <div class="row">
+          <span class="element meta"><a href="#Li">Li</a></span>
+          <span class="element meta"><a href="#Be">Be</a></span>
+          <span class="span-10"></span>
+          <!--<span class="element form"><a href="#fieldset">fieldset</a></span>-->
+          <span class="element form"><a href="#B">B</a></span>
+          <span class="element doc"><a href="#C">C</a></span>
+          <span class="element doc"><a href="#N">N</a></span>
+          <span class="element doc"><a href="#O">O</a></span>
+          <span class="element table"><a href="#F">F</a></span>
+          <span class="element table"><a href="#Ne">Ne</a></span>
+        </div>
+        <div class="row">
+          <span class="element meta"><a href="#Na">Na</a></span>
+          <span class="element meta"><a href="#Mg">Mg</a></span>
+          <span class="span-10"> </span>
+          <!--<span class="element form"><a href="#meter">meter</a></span>-->
+          <span class="element form"><a href="#Al">Al</a></span>
+          <span class="element doc"><a href="#Si">Si</a></span>
+          <span class="element doc"><a href="#P">P</a></span>
+          <span class="element doc"><a href="#S">S</a></span>
+          <span class="element table"><a href="#Cl">Cl</a></span>
+          <span class="element table"><a href="#Ar">Ar</a></span>
+        </div>
+        <div class="row">
+          <span class="element meta"><a href="#K">K</a></span>
+          <span class="element meta"><a href="#Ca">Ca</a></span>
+          <span class="element group"><a href="#Sc">Sc</a></span>
+          <span class="element group"><a href="#Ti">Ti</a></span>
+          <span class="element group"><a href="#V">V</a></span>
+          <span class="element group"><a href="#Cr">Cr</a></span>
+          <span class="element group"><a href="#Mn">Mn</a></span>
+          <span class="element group"><a href="#Fe">Fe</a></span>
+          <span class="element group"><a href="#Co">Co</a></span>
+          <span class="element group"><a href="#Ni">Ni</a></span>
+          <span class="element group"><a href="#Cu">Cu</a></span>
+          <span class="element group"><a href="#Zn">Zn</a></span>
+          <span class="element form"><a href="#Ga">Ga</a></span>
+          <span class="element doc"><a href="#Ge">Ge</a></span>
+          <span class="element doc"><a href="#As">As</a></span>
+          <span class="element doc"><a href="#Se">Se</a></span>
+          <span class="element interactive"><a href="#Br">Br</a></span>
+          <span class="element table"><a href="#Kr">Kr</a></span>
+        </div>
+        <div class="row">
+          <span class="element meta"><a href="#Rb">Rb</a></span>
+          <span class="element meta"><a href="#Sr">Sr</a></span>
+          <span class="element group"><a href="#Y">Y</a></span>
+          <span class="element group"><a href="#Zr">Zr</a></span>
+          <span class="element group"><a href="#Nb">Nb</a></span>
+          <span class="element group"><a href="#Mo">Mo</a></span>
+          <span class="element group"><a href="#Tc">Tc</a></span>
+          <span class="element group"><a href="#Ru">Ru</a></span>
+          <span class="element group"><a href="#Rh">Rh</a></span>
+          <span class="element group"><a href="#Pd">Pd</a></span>
+          <span class="element group"><a href="#Ag">Ag</a></span>
+          <span class="element group"><a href="#Cd">Cd</a></span>
+          <span class="element form"><a href="#In">In</a></span>
+          <span class="element doc"><a href="#Sn">Sn</a></span>
+          <span class="element doc"><a href="#Sb">Sb</a></span>
+          <span class="element doc"><a href="#Te">Te</a></span>
+          <span class="element interactive"><a href="#I">I</a></span>
+          <span class="element table"><a href="#Xe">Xe</a></span>
+        </div>
+        <div class="row">
+          <span class="element meta"><a href="#Cs">Cs</a></span>
+          <span class="element meta"><a href="#Ba">Ba</a></span>
+          <span class="span-1"></span>
+          <span class="element group"><a href="#Hf">Hf</a></span>
+          <span class="element group"><a href="#Ta">Ta</a></span>
+          <span class="element group"><a href="#W">W</a></span>
+          <span class="element group"><a href="#Re">Re</a></span>
+          <span class="element group"><a href="#Os">Os</a></span>
+          <span class="element group"><a href="#Ir">Ir</a></span>
+          <span class="element group"><a href="#Pt">Pt</a></span>
+          <span class="element group"><a href="#Au">Au</a></span>
+          <span class="element group"><a href="#Hg">Hg</a></span>
+          <span class="element form"><a href="#Tl">Tl</a></span>
+          <span class="element form"><a href="#Pb">Pb</a></span>
+          <span class="element doc"><a href="#Bi">Bi</a></span>
+          <span class="element doc"><a href="#Po">Po</a></span>
+          <span class="element interactive"><a href="#At">At</a></span>
+          <span class="element table"><a href="#Rn">Rn</a></span>
+        </div>
+        <div class="row">
+          <span class="element meta"><a href="#Fr">Fr</a></span>
+          <span class="element meta"><a href="#Ra">Ra</a></span>
+          <span class="span-1"></span>
+          <span class="element group"><a href="#Rf">Rf</a></span>
+          <span class="element group"><a href="#Db">Db</a></span>
+          <span class="element group"><a href="#Sg">Sg</a></span>
+          <span class="element group"><a href="#Bh">Bh</a></span>
+          <span class="element group"><a href="#Hs">Hs</a></span>
+          <span class="element group"><a href="#Mt">Mt</a></span>
+          <span class="element group"><a href="#Ds">Ds</a></span>
+          <span class="element group"><a href="#Rg">Rg</a></span>
+          <span class="element group"><a href="#Cn">Cn</a></span>
+          <span class="element form"><a href="#Nh">Nh</a></span>
+          <span class="element form"><a href="#Fl">Fl</a></span>
+          <span class="element form"><a href="#Mc">Mc</a></span>
+          <span class="element doc"><a href="#Lv">Lv</a></span>
+          <span class="element doc"><a href="#Ts">Ts</a></span>
+          <span class="element table"><a href="#Og">Og</a></span>
+        </div>
+      </div>
+      <div id="f-block">
+        <div class="row">
+          <span class="span-2"> </span>
+          <span class="element embed"><a href="#La">La</a></span>
+          <span class="element embed"><a href="#Ce">Ce</a></span>
+          <span class="element embed"><a href="#Pr">Pr</a></span>
+          <span class="element embed"><a href="#Nd">Nd</a></span>
+          <span class="element embed"><a href="#Pm">Pm</a></span>
+          <span class="element embed"><a href="#Sm">Sm</a></span>
+          <span class="element embed"><a href="#Eu">Eu</a></span>
+          <span class="element embed"><a href="#Gd">Gd</a></span>
+          <span class="element embed"><a href="#Tb">Tb</a></span>
+          <span class="element embed"><a href="#Dy">Dy</a></span>
+          <span class="element embed"><a href="#Ho">Ho</a></span>
+          <span class="element embed"><a href="#Er">Er</a></span>
+          <span class="element embed"><a href="#Tm">Tm</a></span>
+          <span class="element embed"><a href="#Yb">Yb</a></span>
+          <span class="element embed"><a href="#Lu">Lu</a></span>
+        </div>
+        <div class="row">
+          <span class="span-2"> </span>
+          <span class="element embed"><a href="#Ac">Ac</a></span>
+          <span class="element embed"><a href="#Th">Th</a></span>
+          <span class="element embed"><a href="#Pa">Pa</a></span>
+          <span class="element embed"><a href="#U">U</a></span>
+          <span class="element embed"><a href="#Np">Np</a></span>
+          <span class="element embed"><a href="#Pu">Pu</a></span>
+          <span class="element embed"><a href="#Am">Am</a></span>
+          <span class="element embed"><a href="#Cm">Cm</a></span>
+          <span class="element embed"><a href="#Bk">Bk</a></span>
+          <span class="element embed"><a href="#Cf">Cf</a></span>
+          <span class="element embed"><a href="#Es">Es</a></span>
+          <span class="element embed"><a href="#Fm">Fm</a></span>
+          <span class="element embed"><a href="#Md">Md</a></span>
+          <span class="element embed"><a href="#No">No</a></span>
+          <span class="element embed"><a href="#Lr">Lr</a></span>
+        </div>
+      </div>
+    </div>
+    <ul class="key">
+      <li><span class="swatch root"></span> s-block elements</li>
+      <li><span class="swatch text"></span> p-block elements</li>
+      <li><span class="swatch group"></span> d-block elements</li>
+      <li><span class="swatch embed"></span> f-block elements</li>
+      <!--<li><span class="swatch meta"></span> Metadata and scripting</li>
+      <li><span class="swatch group"></span> Grouping content</li>
+      <li><span class="swatch doc"></span> Document sections</li>
+      <li><span class="swatch interactive"></span> Interactive elements</li>
+      <li><span class="swatch embed"></span> Embedding content</li>-->
+    </ul>
+    <div id="descriptions">
+      <div class="info" id="H">
+        <h3>Hydrogen (H)</h3>
+        <p>Atomic Number: 1, Period: 1.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>1</td><td>1</td><td>-0.38</td><td>Shannon</td></tr>
+        <tr><td>1</td><td>2</td><td>-0.18</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="He">
+        <h3>Helium (He)</h3>
+        <p>Atomic Number: 2, Period: 1.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Li">
+        <h3>Lithium (Li)</h3>
+        <p>Atomic Number: 3, Period: 2.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>1</td><td>1</td><td>0.449</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>0.495</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>3</td><td>0.543</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>4</td><td>0.59</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>5</td><td>0.673</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>6</td><td>0.76</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>7</td><td>0.838</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>8</td><td>0.92</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>9</td><td>0.989</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>10</td><td>1.054</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>12</td><td>1.167</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Be">
+        <h3>Beryllium (Be)</h3>
+        <p>Atomic Number: 4, Period: 2.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>2</td><td>3</td><td>0.16</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>4</td><td>0.27</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>5</td><td>0.359</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>0.45</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="B">
+        <h3>Boron (B)</h3>
+        <p>Atomic Number: 5, Period: 2.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>3</td><td>3</td><td>0.01</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>4</td><td>0.11</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>5</td><td>0.188</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.27</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="C">
+        <h3>Carbon (C)</h3>
+        <p>Atomic Number: 6, Period: 2.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>3</td><td>2</td><td>0.027</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>3</td><td>0.07</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.084</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>1</td><td>0.105</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>4</td><td>0.15</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>2</td><td>0.156</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.16</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="N">
+        <h3>Nitrogen (N)</h3>
+        <p>Atomic Number: 7, Period: 2.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>5</td><td>6</td><td>0.13</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.16</td><td>Shannon</td></tr>
+		<tr><td>-3</td><td>4</td><td>1.46</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="O">
+        <h3>Oxygen (O)</h3>
+        <p>Atomic Number: 8, Period: 2.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>-2</td><td>2</td><td>1.35</td><td>Shannon</td></tr>
+		<tr><td>-2</td><td>3</td><td>1.36</td><td>Shannon</td></tr>
+		<tr><td>-2</td><td>4</td><td>1.38</td><td>Shannon</td></tr>
+		<tr><td>-2</td><td>6</td><td>1.4</td><td>Shannon</td></tr>
+		<tr><td>-2</td><td>8</td><td>1.42</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="F">
+        <h3>Fluorine (F)</h3>
+        <p>Atomic Number: 9, Period: 2.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>7</td><td>6</td><td>0.08</td><td>Shannon</td></tr>
+		<tr><td>-1</td><td>2</td><td>1.285</td><td>Shannon</td></tr>
+		<tr><td>-1</td><td>3</td><td>1.3</td><td>Shannon</td></tr>
+		<tr><td>-1</td><td>4</td><td>1.31</td><td>Shannon</td></tr>
+		<tr><td>-1</td><td>6</td><td>1.33</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ne">
+        <h3>Neon (Ne)</h3>
+        <p>Atomic Number: 10, Period: 2.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Na">
+        <h3>Sodium (Na)</h3>
+        <p>Atomic Number: 11, Period: 3.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>1</td><td>1</td><td>0.818</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>0.877</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>3</td><td>0.929</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>4</td><td>0.99</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>5</td><td>1</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>6</td><td>1.02</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>7</td><td>1.12</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>8</td><td>1.18</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>9</td><td>1.24</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>10</td><td>1.294</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>11</td><td>1.344</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>12</td><td>1.39</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Mg">
+        <h3>Magnesium (Mg)</h3>
+        <p>Atomic Number: 12, Period: 3.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>2</td><td>3</td><td>0.478</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>4</td><td>0.57</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>5</td><td>0.66</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>0.72</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>0.808</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>0.89</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>0.957</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Al">
+        <h3>Aluminium (Al)</h3>
+        <p>Atomic Number: 13, Period: 3.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>3</td><td>3</td><td>0.313</td><td>ML Work<tr></tr>
+		<tr><td>3</td><td>4</td><td>0.39</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>5</td><td>0.48</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.535</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.611</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Si">
+        <h3>Silicon (Si)</h3>
+        <p>Atomic Number: 14, Period: 3.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>4</td><td>4</td><td>0.26</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>5</td><td>0.332</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.4</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>8</td><td>0.531</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="P">
+        <h3>Phosphorus (P)</h3>
+        <p>Atomic Number: 15, Period: 3.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>3</td><td>0.161</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>4</td><td>0.17</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>4</td><td>0.231</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.267</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>5</td><td>0.29</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>6</td><td>0.38</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.44</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="S">
+        <h3>Sulfur (S)</h3>
+        <p>Atomic Number: 16, Period: 3.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>5</td><td>3</td><td>0.091</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>4</td><td>0.12</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>2</td><td>0.123</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>3</td><td>0.188</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>6</td><td>0.29</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>3</td><td>0.342</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>6</td><td>0.356</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.37</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>1</td><td>0.483</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>2</td><td>0.53</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>3</td><td>0.579</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>4</td><td>0.628</td><td>ML Work</td></tr>
+		<tr><td>-2</td><td>6</td><td>1.84</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Cl">
+        <h3>Chlorine (Cl)</h3>
+        <p>Atomic Number: 17, Period: 3.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>5</td><td>2</td><td>0.052</td><td>ML Work</td></tr>
+		<tr><td>7</td><td>4</td><td>0.08</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>3</td><td>0.12</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>2</td><td>0.199</td><td>ML Work</td></tr>
+		<tr><td>7</td><td>6</td><td>0.27</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>1</td><td>0.943</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>0.997</td><td>ML Work</td></tr>
+		<tr><td>-1</td><td>6</td><td>1.81</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ar">
+        <h3>Argon (Ar)</h3>
+        <p>Atomic Number: 18, Period: 3.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="K">
+        <h3>Potassium (K)</h3>
+        <p>Atomic Number: 19, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>1</td><td>1</td><td>1.201</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>1.264</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>3</td><td>1.319</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>4</td><td>1.37</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>6</td><td>1.38</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>5</td><td>1.401</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>7</td><td>1.46</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>8</td><td>1.51</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>9</td><td>1.55</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>10</td><td>1.59</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>11</td><td>1.61</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>12</td><td>1.64</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>13</td><td>1.673</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ca">
+        <h3>Calcium (Ca)</h3>
+        <p>Atomic Number: 20, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>2</td><td>1</td><td>0.601</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>2</td><td>0.685</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>3</td><td>0.769</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>4</td><td>0.85</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>5</td><td>0.927</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>1</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>1.06</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>8</td><td>1.12</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>1.18</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>10</td><td>1.23</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>11</td><td>1.286</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>12</td><td>1.34</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Sc">
+        <h3>Scandium (Sc)</h3>
+        <p>Atomic Number: 21, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>2</td><td>0.429</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.659</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.745</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.804</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>0.87</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>0.924</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>9</td><td>0.941</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>10</td><td>1.006</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ti">
+        <h3>Titanium (Ti)</h3>
+        <p>Atomic Number: 22, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>1</td><td>0.183</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>2</td><td>0.262</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>3</td><td>0.343</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>4</td><td>0.42</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>5</td><td>0.51</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.605</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>5</td><td>0.615</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.67</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>4</td><td>0.722</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>0.74</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.762</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>5</td><td>0.789</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>9</td><td>0.796</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>10</td><td>0.85</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>0.86</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="V">
+        <h3>Vanadium (V)</h3>
+        <p>Atomic Number: 23, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>5</td><td>1</td><td>0.083</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>2</td><td>0.171</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>1</td><td>0.183</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>2</td><td>0.263</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>3</td><td>0.263</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>3</td><td>0.346</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>4</td><td>0.355</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>4</td><td>0.431</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.449</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>5</td><td>0.46</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>4</td><td>0.513</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>5</td><td>0.53</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>6</td><td>0.54</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>5</td><td>0.576</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.58</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>8</td><td>0.63</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.64</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>8</td><td>0.72</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>0.79</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Cr">
+        <h3>Chromium (Cr)</h3>
+        <p>Atomic Number: 24, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>5</td><td>3</td><td>0.254</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>4</td><td>0.26</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>4</td><td>0.345</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>5</td><td>0.355</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>2</td><td>0.375</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>4</td><td>0.41</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>5</td><td>0.421</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>6</td><td>0.44</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>5</td><td>0.485</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>6</td><td>0.49</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>4</td><td>0.501</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.55</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>8</td><td>0.57</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>3</td><td>0.592</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.615</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>4</td><td>0.651</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>7</td><td>0.689</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>5</td><td>0.705</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>0.73</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>0.854</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>9</td><td>0.864</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>10</td><td>0.949</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>0.95</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Mn">
+        <h3>Manganese (Mn)</h3>
+        <p>Atomic Number: 25, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>7</td><td>4</td><td>0.25</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>4</td><td>0.255</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>4</td><td>0.33</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>4</td><td>0.39</td><td>Shannon</td></tr>
+		<tr><td>7</td><td>6</td><td>0.46</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>5</td><td>0.485</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.52</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>2</td><td>0.522</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.53</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>5</td><td>0.58</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.58</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>3</td><td>0.599</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>4</td><td>0.66</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>0.67</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.69</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>5</td><td>0.75</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>0.784</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>7</td><td>0.9</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>8</td><td>0.96</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>1.057</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.101</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>10</td><td>1.143</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>12</td><td>1.28</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Fe">
+        <h3>Iron (Fe)</h3>
+        <p>Atomic Number: 26, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>6</td><td>4</td><td>0.25</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>4</td><td>0.325</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>4</td><td>0.424</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.442</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>2</td><td>0.478</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.49</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>5</td><td>0.496</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.55</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>3</td><td>0.557</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>0.562</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.58</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.585</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>0.61</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>4</td><td>0.63</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>5</td><td>0.644</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>7</td><td>0.666</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>0.78</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>0.784</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>0.92</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>1.026</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>10</td><td>1.12</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>12</td><td>1.262</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Co">
+        <h3>Cobalt (Co)</h3>
+        <p>Atomic Number: 27, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>1</td><td>0.258</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>4</td><td>0.4</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>3</td><td>0.41</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>2</td><td>0.412</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>5</td><td>0.467</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.472</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>0.487</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>3</td><td>0.496</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.526</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.53</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.545</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>4</td><td>0.58</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>0.65</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.655</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>5</td><td>0.67</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>0.782</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>0.9</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>0.995</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ni">
+        <h3>Nickel (Ni)</h3>
+        <p>Atomic Number: 28, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>2</td><td>2</td><td>0.369</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>0.445</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>3</td><td>0.45</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.45</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.48</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>4</td><td>0.49</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.56</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>5</td><td>0.63</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>0.69</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>0.786</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>0.878</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>9</td><td>0.97</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Cu">
+        <h3>Copper (Cu)</h3>
+        <p>Atomic Number: 29, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>2</td><td>2</td><td>0.386</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.452</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>0.46</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>3</td><td>0.475</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.505</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>3</td><td>0.535</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.54</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>4</td><td>0.57</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>4</td><td>0.6</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>5</td><td>0.65</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>0.706</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>5</td><td>0.725</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>0.73</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>6</td><td>0.77</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>0.801</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>0.881</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>7</td><td>0.928</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>9</td><td>0.962</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.008</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>8</td><td>1.023</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>10</td><td>1.038</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>9</td><td>1.113</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>12</td><td>1.179</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>10</td><td>1.198</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Zn">
+        <h3>Zinc (Zn)</h3>
+        <p>Atomic Number: 30, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>2</td><td>1</td><td>0.323</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>2</td><td>0.414</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>3</td><td>0.506</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>4</td><td>0.6</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>5</td><td>0.68</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>0.74</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>0.821</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>0.9</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>0.966</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ga">
+        <h3>Gallium (Ga)</h3>
+        <p>Atomic Number: 31, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>4</td><td>0.47</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>5</td><td>0.55</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.62</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.684</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>0.75</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ge">
+        <h3>Germanium (Ge)</h3>
+        <p>Atomic Number: 32, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>3</td><td>0.32</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>4</td><td>0.39</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>5</td><td>0.459</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.467</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.53</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>3</td><td>0.537</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>7</td><td>0.58</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>0.636</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>0.73</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="As">
+        <h3>Arsenic (As)</h3>
+        <p>Atomic Number: 33, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>5</td><td>3</td><td>0.255</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>4</td><td>0.335</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>5</td><td>0.395</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.413</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>6</td><td>0.46</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>4</td><td>0.471</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.524</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>8</td><td>0.577</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.58</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Se">
+        <h3>Selenium (Se)</h3>
+        <p>Atomic Number: 34, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>1</td><td>0.125</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>3</td><td>0.2</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>3</td><td>0.272</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>4</td><td>0.28</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>5</td><td>0.35</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>4</td><td>0.352</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>6</td><td>0.42</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>5</td><td>0.434</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.5</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>1</td><td>0.519</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>2</td><td>0.582</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>7</td><td>0.611</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>3</td><td>0.646</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>0.703</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>9</td><td>0.789</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>0.992</td><td>ML Work</td></tr>
+		<tr><td>-2</td><td>6</td><td>1.98</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Br">
+        <h3>Bromine (Br)</h3>
+        <p>Atomic Number: 35, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>7</td><td>4</td><td>0.25</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>3</td><td>0.31</td><td>Shannon</td></tr>
+		<tr><td>7</td><td>6</td><td>0.39</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>4</td><td>0.59</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>6</td><td>0.635</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>1.021</td><td>ML Work</td></tr>
+		<tr><td>-1</td><td>6</td><td>1.96</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Kr">
+        <h3>Krypton (Kr)</h3>
+        <p>Atomic Number: 36, Period: 4.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Rb">
+        <h3>Rubidium (Rb)</h3>
+        <p>Atomic Number: 37, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>1</td><td>1</td><td>1.205</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>1.276</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>3</td><td>1.344</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>4</td><td>1.408</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>5</td><td>1.466</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>6</td><td>1.52</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>7</td><td>1.56</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>8</td><td>1.61</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>9</td><td>1.63</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>10</td><td>1.66</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>11</td><td>1.69</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>12</td><td>1.72</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>13</td><td>1.773</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>14</td><td>1.83</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Sr">
+        <h3>Strontium (Sr)</h3>
+        <p>Atomic Number: 38, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>2</td><td>1</td><td>0.81</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>2</td><td>0.891</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>3</td><td>0.971</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>4</td><td>1.046</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>5</td><td>1.115</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>1.18</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>1.21</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>8</td><td>1.26</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>1.31</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>10</td><td>1.36</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>11</td><td>1.401</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>12</td><td>1.44</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Y">
+        <h3>Yttrium (Y)</h3>
+        <p>Atomic Number: 39, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>2</td><td>0.612</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.686</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.759</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.829</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.9</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.96</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>1.019</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>1.067</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>9</td><td>1.075</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>10</td><td>1.126</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.219</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Zr">
+        <h3>Zirconium (Zr)</h3>
+        <p>Atomic Number: 40, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>4</td><td>0.59</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>5</td><td>0.66</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.72</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>7</td><td>0.78</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>8</td><td>0.84</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>9</td><td>0.89</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>10</td><td>0.948</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Nb">
+        <h3>Niobium (Nb)</h3>
+        <p>Atomic Number: 41, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>5</td><td>4</td><td>0.48</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>4</td><td>0.549</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>5</td><td>0.563</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.609</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>5</td><td>0.616</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>6</td><td>0.64</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>5</td><td>0.665</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.68</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>7</td><td>0.69</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.72</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>8</td><td>0.74</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>4</td><td>0.755</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>0.79</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>5</td><td>0.816</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>0.884</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Mo">
+        <h3>Molybdenum (Mo)</h3>
+        <p>Atomic Number: 42, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>5</td><td>1</td><td>0.216</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>2</td><td>0.228</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>3</td><td>0.315</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>3</td><td>0.378</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>4</td><td>0.41</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>4</td><td>0.46</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>5</td><td>0.5</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>5</td><td>0.541</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>6</td><td>0.59</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>6</td><td>0.61</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.65</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.69</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>7</td><td>0.73</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>8</td><td>0.779</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Tc">
+        <h3>Technetium (Tc)</h3>
+        <p>Atomic Number: 43, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>7</td><td>4</td><td>0.37</td><td>Shannon</td></tr>
+		<tr><td>7</td><td>5</td><td>0.469</td><td>ML Work</td></tr>
+		<tr><td>7</td><td>6</td><td>0.56</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>6</td><td>0.6</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.645</td><td>Shannon</td></tr>
+		<tr><td>7</td><td>8</td><td>0.724</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ru">
+        <h3>Ruthenium (Ru)</h3>
+        <p>Atomic Number: 44, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>8</td><td>4</td><td>0.36</td><td>Shannon</td></tr>
+		<tr><td>7</td><td>4</td><td>0.38</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>4</td><td>0.386</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>4</td><td>0.429</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>5</td><td>0.469</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>5</td><td>0.502</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.531</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>6</td><td>0.551</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>6</td><td>0.565</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.62</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.68</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>7</td><td>0.685</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>0.752</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Rh">
+        <h3>Rhodium (Rh)</h3>
+        <p>Atomic Number: 45, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>5</td><td>6</td><td>0.55</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.6</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.665</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>0.838</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Pd">
+        <h3>Palladium (Pd)</h3>
+        <p>Atomic Number: 46, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>2</td><td>2</td><td>0.461</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>0.59</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.615</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>4</td><td>0.64</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.76</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>0.86</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>0.94</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>1.024</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>10</td><td>1.182</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ag">
+        <h3>Silver (Ag)</h3>
+        <p>Atomic Number: 47, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>2</td><td>2</td><td>0.552</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>1</td><td>0.563</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>0.67</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>4</td><td>0.67</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.75</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>4</td><td>0.79</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>3</td><td>0.844</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>0.882</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>0.94</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>4</td><td>1</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>8</td><td>1.076</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>5</td><td>1.09</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>6</td><td>1.15</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>7</td><td>1.22</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>8</td><td>1.28</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>9</td><td>1.35</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>10</td><td>1.415</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>11</td><td>1.479</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>12</td><td>1.542</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Cd">
+        <h3>Cadmium (Cd)</h3>
+        <p>Atomic Number: 48, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>2</td><td>2</td><td>0.586</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>3</td><td>0.69</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>4</td><td>0.78</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>5</td><td>0.87</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>0.95</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>1.03</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>8</td><td>1.1</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>1.151</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>10</td><td>1.204</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>12</td><td>1.31</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="In">
+        <h3>Indium (In)</h3>
+        <p>Atomic Number: 49, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>3</td><td>0.556</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.62</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>5</td><td>0.713</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.8</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.86</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>0.92</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>1.024</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>7</td><td>1.097</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>1.162</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>9</td><td>1.485</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>10</td><td>1.535</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Sn">
+        <h3>Tin (Sn)</h3>
+        <p>Atomic Number: 50, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>4</td><td>0.55</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>5</td><td>0.62</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.69</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>2</td><td>0.697</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>7</td><td>0.75</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>3</td><td>0.782</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>0.81</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>4</td><td>0.862</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>5</td><td>0.933</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>0.999</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>7</td><td>1.063</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>1.128</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>9</td><td>1.195</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>10</td><td>1.264</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Sb">
+        <h3>Antimony (Sb)</h3>
+        <p>Atomic Number: 51, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>5</td><td>3</td><td>0.394</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>5</td><td>0.542</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>6</td><td>0.6</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>3</td><td>0.678</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.76</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.76</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>5</td><td>0.8</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.858</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>0.932</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>9</td><td>1.014</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>10</td><td>1.095</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Te">
+        <h3>Tellurium (Te)</h3>
+        <p>Atomic Number: 52, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>2</td><td>0.415</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>4</td><td>0.43</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>5</td><td>0.498</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>3</td><td>0.52</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>6</td><td>0.56</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>5</td><td>0.65</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>7</td><td>0.651</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>4</td><td>0.66</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>6</td><td>0.76</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>5</td><td>0.809</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.97</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>7</td><td>1.009</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>1.062</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>9</td><td>1.108</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>10</td><td>1.156</td><td>ML Work</td></tr>
+		<tr><td>-2</td><td>6</td><td>2.21</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="I">
+        <h3>Iodine (I)</h3>
+        <p>Atomic Number: 53, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>7</td><td>4</td><td>0.42</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>3</td><td>0.44</td><td>Shannon</td></tr>
+		<tr><td>7</td><td>5</td><td>0.493</td><td>ML Work</td></tr>
+		<tr><td>7</td><td>6</td><td>0.53</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>4</td><td>0.615</td><td>ML Work</td></tr>
+		<tr><td>7</td><td>8</td><td>0.711</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>5</td><td>0.782</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>6</td><td>0.95</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>7</td><td>1.037</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>8</td><td>1.113</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>9</td><td>1.169</td><td>ML Work</td></tr>
+		<tr><td>-1</td><td>6</td><td>2.2</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Xe">
+        <h3>Xenon (Xe)</h3>
+        <p>Atomic Number: 54, Period: 5.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>8</td><td>4</td><td>0.4</td><td>Shannon</td></tr>
+		<tr><td>8</td><td>6</td><td>0.48</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Cs">
+        <h3>Caesium (Cs)</h3>
+        <p>Atomic Number: 55, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>1</td><td>1</td><td>1.46</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>1.507</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>3</td><td>1.551</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>4</td><td>1.593</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>5</td><td>1.632</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>6</td><td>1.67</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>7</td><td>1.705</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>8</td><td>1.74</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>9</td><td>1.78</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>10</td><td>1.81</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>11</td><td>1.85</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>12</td><td>1.88</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>13</td><td>1.929</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ba">
+        <h3>Barium (Ba)</h3>
+        <p>Atomic Number: 56, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>2</td><td>1</td><td>0.979</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>2</td><td>1.053</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>3</td><td>1.128</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>4</td><td>1.203</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>5</td><td>1.274</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>1.35</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>1.38</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>8</td><td>1.42</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>1.47</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>10</td><td>1.52</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>11</td><td>1.57</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>12</td><td>1.61</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="La">
+        <h3>Lanthanum (La)</h3>
+        <p>Atomic Number: 57, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>1</td><td>0.723</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>2</td><td>0.788</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.852</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.913</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.973</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>1.032</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>1.1</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>1.16</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.216</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>1.249</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>10</td><td>1.27</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>11</td><td>1.299</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>1.345</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.36</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>1.397</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>10</td><td>1.451</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>12</td><td>1.549</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ce">
+        <h3>Cerium (Ce)</h3>
+        <p>Atomic Number: 58, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>2</td><td>0.772</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.87</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>4</td><td>0.895</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>7</td><td>0.913</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.953</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>0.97</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>1.01</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>9</td><td>1.023</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>7</td><td>1.07</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>10</td><td>1.07</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>12</td><td>1.14</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>1.143</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.196</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>1.235</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>10</td><td>1.25</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>11</td><td>1.273</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.34</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Pr">
+        <h3>Praseodymium (Pr)</h3>
+        <p>Atomic Number: 59, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>1</td><td>0.704</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>2</td><td>0.768</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>5</td><td>0.782</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.831</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.85</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>4</td><td>0.891</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>7</td><td>0.903</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.948</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>0.96</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.99</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>1.065</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>1.126</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.179</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>10</td><td>1.232</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>1.238</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>11</td><td>1.266</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.294</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>1.326</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>12</td><td>1.525</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Nd">
+        <h3>Neodymium (Nd)</h3>
+        <p>Atomic Number: 60, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>1</td><td>0.688</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>2</td><td>0.752</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.814</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.874</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.932</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.983</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>1.049</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>1.109</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.163</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>10</td><td>1.216</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>11</td><td>1.249</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.27</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>8</td><td>1.29</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>1.35</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>12</td><td>1.505</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Pm">
+        <h3>Promethium (Pm)</h3>
+        <p>Atomic Number: 61, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>6</td><td>0.97</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>1.093</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.144</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Sm">
+        <h3>Samarium (Sm)</h3>
+        <p>Atomic Number: 62, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>1</td><td>0.658</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>2</td><td>0.721</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.784</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.844</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.902</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.958</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>1.02</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>1.079</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.132</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>1.17</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>10</td><td>1.185</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>11</td><td>1.218</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>7</td><td>1.22</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>12</td><td>1.24</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>8</td><td>1.27</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>1.32</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Eu">
+        <h3>Europium (Eu)</h3>
+        <p>Atomic Number: 63, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>1</td><td>0.645</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>2</td><td>0.709</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.832</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>1</td><td>0.842</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.89</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>2</td><td>0.909</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.947</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>1.01</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>1.066</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>5</td><td>1.099</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>9</td><td>1.12</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>1.17</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>10</td><td>1.172</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>7</td><td>1.2</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>11</td><td>1.204</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.231</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>1.25</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>1.3</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>10</td><td>1.35</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>11</td><td>1.405</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>12</td><td>1.452</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Gd">
+        <h3>Gadolinium (Gd)</h3>
+        <p>Atomic Number: 64, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>1</td><td>0.611</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>2</td><td>0.675</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.803</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.866</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.938</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>1</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>1.053</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.107</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>10</td><td>1.148</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>1.199</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.206</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Tb">
+        <h3>Terbium (Tb)</h3>
+        <p>Atomic Number: 65, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>1</td><td>0.612</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>2</td><td>0.676</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>5</td><td>0.703</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.76</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>7</td><td>0.824</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.861</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>0.88</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.923</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.98</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>1.04</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>12</td><td>1.046</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>9</td><td>1.095</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>10</td><td>1.141</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.2</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Dy">
+        <h3>Dysprosium (Dy)</h3>
+        <p>Atomic Number: 66, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>2</td><td>0.663</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.726</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.788</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.849</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.912</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.97</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>1.027</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>1.07</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.083</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>10</td><td>1.129</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>7</td><td>1.13</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>12</td><td>1.187</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>1.19</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ho">
+        <h3>Holmium (Ho)</h3>
+        <p>Atomic Number: 67, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>2</td><td>0.65</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.713</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.775</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.837</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.901</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.959</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>1.015</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.072</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>10</td><td>1.12</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>11</td><td>1.147</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.174</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Er">
+        <h3>Erbium (Er)</h3>
+        <p>Atomic Number: 68, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>2</td><td>0.636</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.7</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.825</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.89</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.945</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>1.004</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.062</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>10</td><td>1.103</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Tm">
+        <h3>Thulium (Tm)</h3>
+        <p>Atomic Number: 69, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>2</td><td>0.624</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.687</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.88</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.936</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>0.994</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>1.03</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.052</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>1.09</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>10</td><td>1.091</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>1.147</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.15</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>12</td><td>1.35</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Yb">
+        <h3>Ytterbium (Yb)</h3>
+        <p>Atomic Number: 70, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>2</td><td>0.611</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.675</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.803</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.868</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.925</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>0.985</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>1.02</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.042</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>10</td><td>1.079</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>7</td><td>1.08</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>12</td><td>1.138</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>1.14</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>12</td><td>1.336</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Lu">
+        <h3>Lutetium (Lu)</h3>
+        <p>Atomic Number: 71, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>2</td><td>0.62</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.683</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.802</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.861</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>0.919</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>0.977</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.032</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>10</td><td>1.082</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Hf">
+        <h3>Hafnium (Hf)</h3>
+        <p>Atomic Number: 72, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>4</td><td>0.58</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.71</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>7</td><td>0.76</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>8</td><td>0.83</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ta">
+        <h3>Tantalum (Ta)</h3>
+        <p>Atomic Number: 73, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>5</td><td>4</td><td>0.478</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>5</td><td>0.559</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>5</td><td>0.613</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>6</td><td>0.64</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.68</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>7</td><td>0.69</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.72</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>8</td><td>0.74</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="W">
+        <h3>Tungsten (W)</h3>
+        <p>Atomic Number: 74, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>6</td><td>3</td><td>0.338</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>4</td><td>0.42</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>5</td><td>0.51</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>6</td><td>0.6</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>6</td><td>0.62</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.66</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>7</td><td>0.671</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>7</td><td>0.685</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>8</td><td>0.737</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Re">
+        <h3>Rhenium (Re)</h3>
+        <p>Atomic Number: 75, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>7</td><td>4</td><td>0.38</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>4</td><td>0.399</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>4</td><td>0.441</td><td>ML Work</td></tr>
+		<tr><td>7</td><td>5</td><td>0.456</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>5</td><td>0.477</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>4</td><td>0.49</td><td>ML Work</td></tr>
+		<tr><td>7</td><td>6</td><td>0.53</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>6</td><td>0.55</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>6</td><td>0.58</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.63</td><td>Shannon</td></tr>
+		<tr><td>7</td><td>8</td><td>0.667</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Os">
+        <h3>Osmium (Os)</h3>
+        <p>Atomic Number: 76, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>8</td><td>4</td><td>0.39</td><td>Shannon</td></tr>
+		<tr><td>7</td><td>5</td><td>0.463</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>5</td><td>0.49</td><td>Shannon</td></tr>
+		<tr><td>7</td><td>6</td><td>0.525</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>6</td><td>0.545</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>6</td><td>0.575</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.63</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ir">
+        <h3>Iridium (Ir)</h3>
+        <p>Atomic Number: 77, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>4</td><td>0.481</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>6</td><td>0.532</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>6</td><td>0.57</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.625</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.68</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Pt">
+        <h3>Platinum (Pt)</h3>
+        <p>Atomic Number: 78, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>2</td><td>2</td><td>0.462</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>6</td><td>0.517</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>6</td><td>0.57</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>4</td><td>0.6</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.625</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>0.8</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>0.923</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>1.026</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Au">
+        <h3>Gold (Au)</h3>
+        <p>Atomic Number: 79, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>5</td><td>6</td><td>0.57</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>4</td><td>0.68</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>3</td><td>0.707</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.762</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.85</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>2</td><td>0.86</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>0.966</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>10</td><td>1.09</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.216</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>6</td><td>1.37</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Hg">
+        <h3>Mercury (Hg)</h3>
+        <p>Atomic Number: 80, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>2</td><td>2</td><td>0.69</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>1</td><td>0.738</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>3</td><td>0.823</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>2</td><td>0.854</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>4</td><td>0.96</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>3</td><td>0.97</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>5</td><td>1.006</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>1.02</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>4</td><td>1.069</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>7</td><td>1.099</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>8</td><td>1.14</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>5</td><td>1.148</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>6</td><td>1.19</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>1.192</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>10</td><td>1.243</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>7</td><td>1.277</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>8</td><td>1.34</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>12</td><td>1.351</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>9</td><td>1.399</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>10</td><td>1.454</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Tl">
+        <h3>Thallium (Tl)</h3>
+        <p>Atomic Number: 81, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>1</td><td>0.493</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>2</td><td>0.58</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>3</td><td>0.666</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.75</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>5</td><td>0.822</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>6</td><td>0.885</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>1</td><td>0.89</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>7</td><td>0.959</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>0.98</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>2</td><td>1.018</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>9</td><td>1.086</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>3</td><td>1.15</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.261</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>4</td><td>1.278</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>5</td><td>1.392</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>6</td><td>1.5</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>7</td><td>1.545</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>8</td><td>1.59</td><td>Shannon</td></tr>
+		<tr><td>1</td><td>9</td><td>1.62</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>10</td><td>1.65</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>11</td><td>1.68</td><td>ML Work</td></tr>
+		<tr><td>1</td><td>12</td><td>1.7</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Pb">
+        <h3>Lead (Pb)</h3>
+        <p>Atomic Number: 82, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>4</td><td>0.65</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>1</td><td>0.701</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>5</td><td>0.73</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.775</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>2</td><td>0.796</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>3</td><td>0.892</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>0.94</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>4</td><td>0.98</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>5</td><td>1.089</td><td>ML Work</td></tr>
+		<tr><td>2</td><td>6</td><td>1.19</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>1.23</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>8</td><td>1.29</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>1.35</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>10</td><td>1.4</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>11</td><td>1.45</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>12</td><td>1.49</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Bi">
+        <h3>Bismuth (Bi)</h3>
+        <p>Atomic Number: 83, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>5</td><td>2</td><td>0.419</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>4</td><td>0.592</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>1</td><td>0.614</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>5</td><td>0.676</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>2</td><td>0.705</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>6</td><td>0.76</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>3</td><td>0.795</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>8</td><td>0.878</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.88</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.96</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>1.03</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>7</td><td>1.097</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>8</td><td>1.17</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>9</td><td>1.22</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>10</td><td>1.275</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>11</td><td>1.33</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>12</td><td>1.385</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Po">
+        <h3>Polonium (Po)</h3>
+        <p>Atomic Number: 84, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>6</td><td>6</td><td>0.67</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.94</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>8</td><td>1.08</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="At">
+        <h3>Astatine (At)</h3>
+        <p>Atomic Number: 85, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>7</td><td>6</td><td>0.62</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Rn">
+        <h3>Radon (Rn)</h3>
+        <p>Atomic Number: 86, Period: 6.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Fr">
+        <h3>Francium (Fr)</h3>
+        <p>Atomic Number: 87, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>1</td><td>6</td><td>1.8</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ra">
+        <h3>Radium (Ra)</h3>
+        <p>Atomic Number: 88, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        <tr><td>2</td><td>8</td><td>1.48</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>12</td><td>1.7</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ac">
+        <h3>Actinium (Ac)</h3>
+        <p>Atomic Number: 89, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>3</td><td>6</td><td>1.12</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>1.252</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Th">
+        <h3>Thorium (Th)</h3>
+        <p>Atomic Number: 90, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>4</td><td>0.797</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>5</td><td>0.858</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.94</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>7</td><td>0.973</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>1.05</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>9</td><td>1.09</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>10</td><td>1.13</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>11</td><td>1.18</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>12</td><td>1.21</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>12</td><td>1.364</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Pa">
+        <h3>Protactinium (Pa)</h3>
+        <p>Atomic Number: 91, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>5</td><td>6</td><td>0.78</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.9</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>8</td><td>0.91</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>9</td><td>0.95</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>8</td><td>1.01</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>1.04</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="U">
+        <h3>Uranium (U)</h3>
+        <p>Atomic Number: 92, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>6</td><td>2</td><td>0.45</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>3</td><td>0.484</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>4</td><td>0.52</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>2</td><td>0.524</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>5</td><td>0.629</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>5</td><td>0.694</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>6</td><td>0.73</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>6</td><td>0.76</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>7</td><td>0.81</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>7</td><td>0.84</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>8</td><td>0.86</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>6</td><td>0.89</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>8</td><td>0.898</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>7</td><td>0.95</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>8</td><td>1</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>1.025</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>9</td><td>1.05</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>12</td><td>1.17</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Np">
+        <h3>Neptunium (Np)</h3>
+        <p>Atomic Number: 93, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>6</td><td>2</td><td>0.429</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>2</td><td>0.513</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>5</td><td>0.618</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>5</td><td>0.682</td><td>ML Work</td></tr>
+		<tr><td>7</td><td>6</td><td>0.71</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>6</td><td>0.72</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>6</td><td>0.75</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>7</td><td>0.792</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>7</td><td>0.822</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>8</td><td>0.855</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.87</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>8</td><td>0.885</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>0.98</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>1.01</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>6</td><td>1.1</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Pu">
+        <h3>Plutonium (Pu)</h3>
+        <p>Atomic Number: 94, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>6</td><td>2</td><td>0.422</td><td>ML Work</td></tr>
+		<tr><td>5</td><td>2</td><td>0.505</td><td>ML Work</td></tr>
+		<tr><td>6</td><td>6</td><td>0.71</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>6</td><td>0.74</td><td>Shannon</td></tr>
+		<tr><td>6</td><td>8</td><td>0.845</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>6</td><td>0.86</td><td>Shannon</td></tr>
+		<tr><td>5</td><td>8</td><td>0.874</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>4</td><td>0.888</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>7</td><td>0.92</td><td>ML Work</td></tr>
+		<tr><td>3</td><td>5</td><td>0.941</td><td>ML Work</td></tr>
+		<tr><td>4</td><td>8</td><td>0.96</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>1</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>1.11</td><td>ML Work</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Am">
+        <h3>Americium (Am)</h3>
+        <p>Atomic Number: 95, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>6</td><td>0.85</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>8</td><td>0.95</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.975</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>8</td><td>1.09</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>7</td><td>1.21</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>8</td><td>1.26</td><td>Shannon</td></tr>
+		<tr><td>2</td><td>9</td><td>1.31</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Cm">
+        <h3>Curium (Cm)</h3>
+        <p>Atomic Number: 96, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>6</td><td>0.85</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>8</td><td>0.95</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.97</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Bk">
+        <h3>Berkelium (Bk)</h3>
+        <p>Atomic Number: 97, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>6</td><td>0.83</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>8</td><td>0.93</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.96</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Cf">
+        <h3>Californium (Cf)</h3>
+        <p>Atomic Number: 98, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </td><td>4</td><td>6</td><td>0.821</td><td>Shannon</td></tr>
+		<tr><td>4</td><td>8</td><td>0.92</td><td>Shannon</td></tr>
+		<tr><td>3</td><td>6</td><td>0.95</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Es">
+        <h3>Einsteinium (Es)</h3>
+        <p>Atomic Number: 99, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Fm">
+        <h3>Fermium (Fm)</h3>
+        <p>Atomic Number: 100, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Md">
+        <h3>Mendelevium (Md)</h3>
+        <p>Atomic Number: 101, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="No">
+        <h3>Nobelium (No)</h3>
+        <p>Atomic Number: 102, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        102</td><td>2</td><td>6</td><td>1.1</td><td>Shannon</td></tr>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Lr">
+        <h3>Lawrencium (Lr)</h3>
+        <p>Atomic Number: 103, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Rf">
+        <h3>Rutherfordium (Rf)</h3>
+        <p>Atomic Number: 104, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Db">
+        <h3>Dubnium (Db)</h3>
+        <p>Atomic Number: 105, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Sg">
+        <h3>Seaborgium (Sg)</h3>
+        <p>Atomic Number: 106, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Bh">
+        <h3>Bohrium (Bh)</h3>
+        <p>Atomic Number: 107, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Hs">
+        <h3>Hassium (Hs)</h3>
+        <p>Atomic Number: 108, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Mt">
+        <h3>Meitnerium (Mt)</h3>
+        <p>Atomic Number: 109, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ds">
+        <h3>Darmstadtium (Ds)</h3>
+        <p>Atomic Number: 110, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Rg">
+        <h3>Roentgenium (Rg)</h3>
+        <p>Atomic Number: 111, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Cn">
+        <h3>Copernicium (Cn)</h3>
+        <p>Atomic Number: 112, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Nh">
+        <h3>Nihonium (Nh)</h3>
+        <p>Atomic Number: 113, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Fl">
+        <h3>Flerovium (Fl)</h3>
+        <p>Atomic Number: 114, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Mc">
+        <h3>Moscovium (Mc)</h3>
+        <p>Atomic Number: 115, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Lv">
+        <h3>Livermorium (Lv)</h3>
+        <p>Atomic Number: 116, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Ts">
+        <h3>Tennessine (Ts)</h3>
+        <p>Atomic Number: 117, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+      <div class="info" id="Og">
+        <h3>Oganesson (Og)</h3>
+        <p>Atomic Number: 118, Period: 7.</p>
+        <table>
+          <thead>
+            <tr><th>Oxidation State</th><th>Coordination Number</th><th>Ionic Radius</th><th>Reference</th></tr>
+          </thead>
+        <tbody>
+        </tbody>
+        </table>
+        <ul class="links">
+          <li><a href="http://abulafia.mt.ic.ac.uk/shannon/ptable.php">Shannon Database</a></li>
+          <li><a href="https://materialsproject.org/">Materials Project</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+      var pageTracker = _gat._getTracker("UA-42027047-3");
+      pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+  </body>
+</html>
